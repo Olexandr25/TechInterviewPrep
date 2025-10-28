@@ -157,7 +157,8 @@ console.log(counter()); // 2
 
 ## What to Answer
 
-- Function declaration піднімається (hoisted); function expression — ні. Arrow functions не мають власного `this` і `arguments`.
+- Function declaration піднімається (hoisted); function expression — ні.
+- Arrow functions не мають власного `this` і `arguments`.
 - Замикання — функція, яка "пам'ятає" лексичне оточення при створенні; корисне для інкапсуляції стану.
 - Call stack — стек викликів, рекурсія додає нові фрейми; без базового випадку може стати нескінченною.
 - Використовувати rest для чистішого, сучасного API; `arguments` — legacy.

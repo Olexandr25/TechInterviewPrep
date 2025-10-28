@@ -188,16 +188,16 @@ controller.abort();
 
 ## Interview Questions
 
-- Що таке event loop? Чим microtask відрізняється від macrotask?  
-- Як створити і використати Promise? Навіщо finally?  
-- Як працює async/await? Чим він відрізняється від then/catch?  
-- Як скасувати fetch‑запит?  
+- Що таке event loop? Чим microtask відрізняється від macrotask?
+- Як створити і використати Promise? Навіщо finally?
+- Як працює async/await? Чим він відрізняється від then/catch?
+- Як скасувати fetch‑запит?
 - Чому callback‑hell шкідливий і як його уникнути?
 
 ## What to Answer
 
-- Event loop керує порядком виконання синхронного і асинхронного коду; microtasks виконуються перед наступним macrotask.  
-- Promise інкапсулює асинхронний результат; .then/.catch/.finally — для обробки.  
-- async/await — синтаксичний цукор над промісами, дає більш імперативний код і читабельність; помилки ловляться try/catch.  
-- AbortController.signal використовується для скасування fetch.  
+- Event loop керує порядком виконання синхронного і асинхронного коду; microtasks виконуються перед наступним macrotask.
+- Promise інкапсулює асинхронний результат; .then/.catch/.finally — для обробки.
+- async/await — синтаксичний цукор над промісами, дає більш імперативний код і читабельність; помилки ловляться try/catch.
+- AbortController.signal використовується для скасування fetch.
 - Використовувати проміси, композицію промісів і async/await замість вкладених колбеків.

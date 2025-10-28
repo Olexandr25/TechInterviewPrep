@@ -161,7 +161,22 @@ function fetchWithTimeout(url, ms) {
 
 ## What to Answer
 
-- fetch повертає Response навіть при HTTP помилках — потрібно перевіряти response.ok/status.
-- Скасування через AbortController; при abort проміс відхиляється з помилкою типу AbortError.
-- Для великих відповідей використовують streaming (ReadableStream) щоб обробляти чанки без повного буферизації.
-- Для upload‑progress краще XHR (xhr.upload.onprogress); для загальної роботи — Fetch.
+- Fetch vs XHR:
+  - fetch — сучасний, проміс‑базований API; повертає об'єкт Response; тіло може бути стрімом; краще для чистих async/await потоків. За замовчуванням не відправляє крос‑доменні куки.
+  - XHR — старіший, callback/ event‑орієнтований; дає контроль над upload/download progress (xhr.upload.onprogress), підтримує sync режим (рідко потрібен). Використовується, коли потрібен прогрес завантаження або сумісність.
+
+- Коли fetch rejects vs returns Response(404):
+  - fetch резолвиться в Response для HTTP відповіді будь‑якого статусу (2xx, 3xx, 4xx, 5xx). Тому треба перевіряти response.ok / response.status.
+  - fetch відхиляє проміс (reject) при мережевих помилках, CORS‑блокуванні, або при abort() (AbortError). Також при некоректному URL/синтаксичній помилці запиту.
+
+- Як скасувати fetch:
+  - Використати AbortController: передати signal у опції fetch(url, { signal }). controller.abort() призведе до відхилення промісу з помилкою типу AbortError.
+  - Короткий приклад:
+
+    ```js
+    const c = new AbortController();
+    fetch(url, { signal: c.signal }).catch(e => {
+      if (e.name === 'AbortError') /* cancelled */;
+    });
+    c.abort();
+    ```
